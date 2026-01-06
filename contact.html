@@ -11,20 +11,20 @@
   <a class="skip-link" href="#main" data-i18n="skipToContent">Skip to content</a>
 
   <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="ARP Collision Repair Home">
-        <img class="brand-logo" src="assets/logonew.png" alt="ARP Collision Repair logo" />
+    <div class="container header-stack">
+      <a class="brand brand-centered" href="index.html" aria-label="ARP Collision Repair Home">
+        <img class="brand-logo" src="assets/logo.png" alt="ARP Collision Repair logo" />
       </a>
 
-      <nav class="nav" aria-label="Main navigation">
+      <nav class="nav nav-centered" aria-label="Main navigation">
         <a class="nav-link" href="index.html" data-i18n="navHome">Home</a>
         <a class="nav-link" href="services.html" data-i18n="navServices">Services</a>
         <a class="nav-link active" href="contact.html" data-i18n="navContact">Contact</a>
       </nav>
 
-      <div class="header-actions">
+      <div class="header-actions header-actions-centered">
         <button id="langToggle" class="btn btn-secondary" type="button" aria-label="Toggle language">
-          <span data-i18n="toggleToSpanish">Español</span>
+          <span id="langToggleLabel"></span>
         </button>
       </div>
     </div>
@@ -47,22 +47,22 @@
 
           <div class="info-row">
             <span class="info-label" data-i18n="contactPhoneLabel">Phone</span>
-            <a class="info-value" href="tel:+16155456680" data-i18n="contactPhoneValue">+1 (615) 545-6680</a>
+            <a class="info-value" href="tel:+1XXXXXXXXXX" data-i18n="contactPhoneValue">+1 (XXX) XXX-XXXX</a>
           </div>
 
           <div class="info-row">
             <span class="info-label" data-i18n="contactEmailLabel">Email</span>
-            <a class="info-value" href="mailto:arpcollisionrepair@gmail.com" data-i18n="contactEmailValue">arpcollisionrepair@gmail.com</a>
+            <a class="info-value" href="mailto:you@example.com" data-i18n="contactEmailValue">you@example.com</a>
           </div>
 
           <div class="info-row">
             <span class="info-label" data-i18n="contactHoursLabel">Hours</span>
-            <span class="info-value" data-i18n="contactHoursValue">Mon–Sat: 8am–5pm</span>
+            <span class="info-value" data-i18n="contactHoursValue">Mon–Fri: 8am–5pm</span>
           </div>
 
           <div class="info-row">
             <span class="info-label" data-i18n="contactAddressLabel">Address</span>
-            <span class="info-value" data-i18n="contactAddressValue">102 Iris Ave, Old Hickory, TN 37138</span>
+            <span class="info-value" data-i18n="contactAddressValue">123 Main St, Your City, ST</span>
           </div>
 
           <p class="small" data-i18n="contactTip">
@@ -73,8 +73,6 @@
         <div class="tile">
           <h2 data-i18n="contactFormTitle">Send a Message</h2>
 
-          <!-- This is a “front-end only” form. To make it actually send emails,
-               connect it to a backend (Formspree, Netlify Forms, Firebase, etc.). -->
           <form id="contactForm" class="form" novalidate>
             <label class="field">
               <span data-i18n="formNameLabel">Name</span>
@@ -110,7 +108,7 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <img class="footer-logo" src="assets/logonew.png" alt="" />
+        <img class="footer-logo" src="assets/logo.png" alt="" />
       </div>
       <p class="footer-text" data-i18n="footerTagline">
         Built to help drivers get back on the road with confidence.
