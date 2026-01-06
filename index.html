@@ -11,20 +11,23 @@
   <a class="skip-link" href="#main" data-i18n="skipToContent">Skip to content</a>
 
   <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="ARP Collision Repair Home">
+    <div class="container header-stack">
+      <!-- Logo row -->
+      <a class="brand brand-centered" href="index.html" aria-label="ARP Collision Repair Home">
         <img class="brand-logo" src="assets/logonew.png" alt="ARP Collision Repair logo" />
       </a>
 
-      <nav class="nav" aria-label="Main navigation">
-        <a class="nav-link" href="index.html" data-i18n="navHome">Home</a>
+      <!-- Nav row -->
+      <nav class="nav nav-centered" aria-label="Main navigation">
+        <a class="nav-link active" href="index.html" data-i18n="navHome">Home</a>
         <a class="nav-link" href="services.html" data-i18n="navServices">Services</a>
         <a class="nav-link" href="contact.html" data-i18n="navContact">Contact</a>
       </nav>
 
-      <div class="header-actions">
+      <!-- Language toggle row -->
+      <div class="header-actions header-actions-centered">
         <button id="langToggle" class="btn btn-secondary" type="button" aria-label="Toggle language">
-          <span data-i18n="toggleToSpanish">Español</span>
+          <span id="langToggleLabel"></span>
         </button>
       </div>
     </div>
