@@ -409,6 +409,11 @@ input[type="file"]::-webkit-file-upload-button:hover{
   width:auto;
   opacity: .95;
 }
+
+.footer-brand a{
+  display: inline-block;
+  text-decoration: none;
+}
 .footer-text{ color: var(--muted); margin: 0; }
 .footer-copy{ color: rgba(244,246,255,.6); margin: 0; }
 
@@ -874,6 +879,11 @@ input:focus, textarea:focus{
   width:auto;
   opacity: .95;
 }
+
+.footer-brand a{
+  display: inline-block;
+  text-decoration: none;
+}
 .footer-text{ color: var(--muted); margin: 0; }
 .footer-copy{ color: rgba(244,246,255,.6); margin: 0; }
 
@@ -988,3 +998,82 @@ input:focus, textarea:focus{
     display: none;
   }
 }
+/* Estimate tool styles */
+.estimate-table{
+  display: grid;
+  gap: 12px;
+}
+
+.estimate-row{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,.02);
+}
+
+.estimate-row-content{
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 8px;
+  align-items: center;
+}
+
+.estimate-input{
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,.25);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.estimate-input:focus{
+  border-color: rgba(226,27,35,.55);
+  box-shadow: 0 0 0 3px rgba(226,27,35,.12);
+  outline: none;
+}
+
+.estimate-desc{
+  grid-column: 1;
+}
+
+.estimate-number{
+  text-align: right;
+}
+
+.estimate-total{
+  text-align: right;
+  font-weight: 600;
+  color: var(--text);
+  padding: 0 4px;
+}
+
+.estimate-remove{
+  align-self: flex-start;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px){
+  .estimate-row-content{
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .estimate-total{
+    text-align: left;
+    padding: 4px 0;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+    padding-top: 8px;
+  }
+
+  .estimate-remove{
+    width: 100%;
+  }
+}
+
