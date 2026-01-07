@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Estimate Tool Login | ARP Collision Repair</title>
+  <meta name="description" content="Login to access the ARP Collision Repair estimate tool." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skipToContent">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-stack">
+      <a class="brand brand-centered" href="index.html" aria-label="ARP Collision Repair Home">
+        <img class="brand-logo" src="assets/logonew.png" alt="ARP Collision Repair logo" />
+      </a>
+
+      <nav class="nav nav-centered" aria-label="Main navigation">
+        <a class="nav-link" href="index.html" data-i18n="navHome">Home</a>
+        <a class="nav-link" href="services.html" data-i18n="navServices">Services</a>
+        <a class="nav-link" href="contact.html" data-i18n="navContact">Contact</a>
+      </nav>
+
+      <div class="header-actions header-actions-centered">
+        <button id="langToggle" class="btn btn-secondary" type="button" aria-label="Toggle language">
+          <span id="langToggleLabel"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <h1>Estimate Tool Login</h1>
+        <p class="lead">Enter password to access the repair estimate tool.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="tile" style="max-width: 400px; margin: 0 auto;">
+          <h2>Login</h2>
+
+          <form id="loginForm" class="form" novalidate>
+            <label class="field">
+              <span>Password</span>
+              <div style="position: relative;">
+                <input id="passwordInput" name="password" type="password" autocomplete="current-password" required style="padding-right: 45px;" />
+                <button type="button" id="togglePassword" class="btn btn-secondary" style="position: absolute; right: 4px; top: 50%; transform: translateY(-50%); padding: 8px 10px; font-size: 0.8rem;" aria-label="Toggle password visibility">Show</button>
+              </div>
+            </label>
+
+            <button class="btn btn-primary btn-block" type="submit">
+              Enter
+            </button>
+
+            <p id="loginError" class="small" role="alert" aria-live="polite" style="color: var(--accent); margin-top: 8px; display: none;"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="estimate-login.html" aria-label="Estimate Tool Login">
+          <img class="footer-logo" src="assets/logonew.png" alt="" />
+        </a>
+      </div>
+      <p class="footer-text" data-i18n="footerTagline">
+        Built to help drivers get back on the road with confidence.
+      </p>
+      <p class="footer-copy" data-i18n="footerCopyright">© 2026 ARP Collision Repair</p>
+    </div>
+  </footer>
+
+  <!-- Mobile bottom navigation -->
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <a class="bottom-nav-link" href="index.html" data-i18n="navHome">Home</a>
+    <a class="bottom-nav-link" href="services.html" data-i18n="navServices">Services</a>
+    <a class="bottom-nav-link" href="contact.html" data-i18n="navContact">Contact</a>
+  </nav>
+
+  <script src="i18n.js"></script>
+  <script src="main.js"></script>
+  <script>
+    // Check if already authenticated
+    if (sessionStorage.getItem('arpEstimateAuth') === 'true') {
+      window.location.href = 'estimate-tool.html';
+    }
+
+    // Password toggle
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('passwordInput');
+    if (togglePassword && passwordInput) {
+      togglePassword.addEventListener('click', () => {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        togglePassword.textContent = type === 'password' ? 'Show' : 'Hide';
+      });
+    }
+
+    // Login form handler
+    const loginForm = document.getElementById('loginForm');
+    const loginError = document.getElementById('loginError');
+    const CORRECT_PASSWORD = 'Pinchecunado25@';
+
+    if (loginForm) {
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const password = passwordInput.value.trim();
+        
+        if (password === CORRECT_PASSWORD) {
+          sessionStorage.setItem('arpEstimateAuth', 'true');
+          window.location.href = 'estimate-tool.html';
+        } else {
+          if (loginError) {
+            loginError.textContent = 'Incorrect password.';
+            loginError.style.display = 'block';
+          }
+          passwordInput.focus();
+        }
+      });
+    }
+  </script>
+</body>
+</html>
+
