@@ -24,6 +24,10 @@ window.I18N_STRINGS = {
     trust1: "Insurance-friendly estimates",
     trust2: "Paint & body specialists",
     trust3: "Honest timelines",
+    homeActionScheduleTitle: "Schedule an Estimate",
+    homeActionScheduleBody: "Request a quick estimate.",
+    homeActionCompareTitle: "Compare Estimate",
+    homeActionCompareBody: "Upload your estimate for review.",
 
     quickInfoTitle: "Quick Info",
     quickInfoPhoneLabel: "Phone",
@@ -89,7 +93,23 @@ window.I18N_STRINGS = {
 
     // Form status
     formThanks: "Thanks! Your message is ready to send. (Hook this form up to a backend to actually deliver it.)",
-    formMissing: "Please fill out the required fields (name, email, message)."
+    formMissing: "Please fill out the required fields (name, email, message).",
+
+    // Compare Estimate
+    comparePageTitle: "Compare Estimate | ARP Collision Repair",
+    compareTitle: "Compare Your Estimate",
+    compareSubtitle: "Upload the estimate you received and we'll review it for you.",
+    compareFormTitle: "Upload Your Estimate",
+    compareFormNameLabel: "Name",
+    compareFormPhoneLabel: "Phone",
+    compareFormEmailLabel: "Email",
+    compareFormUploadLabel: "Estimate File",
+    compareFormUploadHint: "PDF, JPG, or PNG files accepted.",
+    compareFormNotesLabel: "Notes (Optional)",
+    compareFormSubmit: "Submit Estimate",
+    compareFormThanks: "Thanks! Your estimate has been submitted. We'll review it and get back to you soon.",
+    compareFormMissing: "Please fill out the required fields (name, email, and estimate file).",
+    compareFormError: "There was an error submitting your estimate. Please try again."
   },
 
   es: {
@@ -113,6 +133,10 @@ window.I18N_STRINGS = {
     trust1: "Cotizaciones aptas para seguros",
     trust2: "Especialistas en pintura y carrocería",
     trust3: "Tiempos honestos",
+    homeActionScheduleTitle: "Programar una Cotización",
+    homeActionScheduleBody: "Solicita una cotización rápida.",
+    homeActionCompareTitle: "Comparar Cotización",
+    homeActionCompareBody: "Sube tu cotización para revisarla.",
 
     quickInfoTitle: "Información Rápida",
     quickInfoPhoneLabel: "Teléfono",
@@ -178,6 +202,22 @@ window.I18N_STRINGS = {
 
     // Form status
     formThanks: "¡Gracias! Tu mensaje está listo para enviarse. (Conecta este formulario a un backend para que se entregue de verdad.)",
-    formMissing: "Por favor completa los campos requeridos (nombre, correo, mensaje)."
+    formMissing: "Por favor completa los campos requeridos (nombre, correo, mensaje).",
+
+    // Compare Estimate
+    comparePageTitle: "Comparar Cotización | ARP Collision Repair",
+    compareTitle: "Compara tu Cotización",
+    compareSubtitle: "Sube la cotización que recibiste y la revisaremos por ti.",
+    compareFormTitle: "Sube tu Cotización",
+    compareFormNameLabel: "Nombre",
+    compareFormPhoneLabel: "Teléfono",
+    compareFormEmailLabel: "Correo",
+    compareFormUploadLabel: "Archivo de Cotización",
+    compareFormUploadHint: "Se aceptan archivos PDF, JPG o PNG.",
+    compareFormNotesLabel: "Notas (Opcional)",
+    compareFormSubmit: "Enviar Cotización",
+    compareFormThanks: "¡Gracias! Tu cotización ha sido enviada. La revisaremos y te contactaremos pronto.",
+    compareFormMissing: "Por favor completa los campos requeridos (nombre, correo y archivo de cotización).",
+    compareFormError: "Hubo un error al enviar tu cotización. Por favor intenta de nuevo."
   }
 };

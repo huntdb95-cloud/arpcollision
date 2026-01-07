@@ -85,10 +85,56 @@
     });
   }
 
+  function wireCompareEstimateForm() {
+    const form = document.getElementById("compareEstimateForm");
+    if (!form) return;
+
+    const status = document.getElementById("compareFormStatus");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const lang = getLanguage();
+      const dict = window.I18N_STRINGS?.[lang] || window.I18N_STRINGS?.en;
+
+      const data = new FormData(form);
+      const name = (data.get("name") || "").toString().trim();
+      const email = (data.get("email") || "").toString().trim();
+      const file = data.get("file");
+
+      if (!name || !email || !file || file.size === 0) {
+        if (status) status.textContent = dict.compareFormMissing || "Please fill out required fields.";
+        return;
+      }
+
+      if (status) status.textContent = "";
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: data,
+          headers: {
+            "Accept": "application/json"
+          }
+        });
+
+        if (response.ok) {
+          if (status) status.textContent = dict.compareFormThanks || "Thanks! Your estimate has been submitted.";
+          form.reset();
+        } else {
+          if (status) status.textContent = dict.compareFormError || "There was an error submitting your estimate. Please try again.";
+        }
+      } catch (error) {
+        if (status) status.textContent = dict.compareFormError || "There was an error submitting your estimate. Please try again.";
+      }
+    });
+  }
+
   // init
   const initial = getLanguage();
   applyTranslations(initial);
   updateLangToggleLabel(initial);
   wireLanguageToggle();
   wireContactForm();
+  wireCompareEstimateForm();
 })();
