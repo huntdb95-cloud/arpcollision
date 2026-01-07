@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Repair Estimate Tool | ARP Collision Repair</title>
+  <title data-i18n="estimateToolPageTitle">Repair Estimate Tool | ARP Collision Repair</title>
   <meta name="description" content="ARP Collision Repair estimate builder tool." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="estimate-print.css" />
@@ -37,8 +37,8 @@
   <main id="main">
     <section class="page-hero">
       <div class="container">
-        <h1>Repair Estimate Tool</h1>
-        <p class="lead">Build and download repair estimates.</p>
+        <h1 data-i18n="estimateToolHeading">Repair Estimate Tool</h1>
+        <p class="lead" data-i18n="estimateToolSubtitle">Build and download repair estimates.</p>
       </div>
     </section>
 
@@ -46,27 +46,27 @@
       <div class="container">
         <!-- Estimate Header / Meta -->
         <div class="tile">
-          <h2>Estimate Information</h2>
-          <div class="grid grid-2" style="gap: 12px;">
+          <h2 data-i18n="estimateInfoHeading">Estimate Information</h2>
+          <div class="grid grid-2 estimate-info-grid" style="gap: 12px;">
             <label class="field">
-              <span>Estimate Date</span>
+              <span data-i18n="estimateDateLabel">Estimate Date</span>
               <input type="date" id="estimateDate" required />
             </label>
             <label class="field">
-              <span>Customer Name</span>
+              <span data-i18n="customerNameLabel">Customer Name</span>
               <input type="text" id="customerName" />
             </label>
             <label class="field">
-              <span>Phone (Optional)</span>
+              <span data-i18n="customerPhoneLabel">Phone (Optional)</span>
               <input type="tel" id="customerPhone" />
             </label>
             <label class="field">
-              <span>Vehicle (Year/Make/Model) (Optional)</span>
-              <input type="text" id="vehicleInfo" placeholder="e.g., 2020 Toyota Camry" />
+              <span data-i18n="vehicleLabel">Vehicle (Year/Make/Model) (Optional)</span>
+              <input type="text" id="vehicleInfo" data-i18n-placeholder="vehiclePlaceholder" placeholder="e.g., 2020 Toyota Camry" />
             </label>
           </div>
           <label class="field" style="margin-top: 12px;">
-            <span>Notes (Optional)</span>
+            <span data-i18n="notesLabel">Notes (Optional)</span>
             <textarea id="estimateNotes" rows="3"></textarea>
           </label>
         </div>
@@ -74,8 +74,8 @@
         <!-- Labor Section -->
         <div class="tile">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <h2 style="margin: 0;">Labor</h2>
-            <button type="button" id="addLaborBtn" class="btn btn-secondary">+ Add Labor Line</button>
+            <h2 style="margin: 0;" data-i18n="laborHeading">Labor</h2>
+            <button type="button" id="addLaborBtn" class="btn btn-secondary" data-i18n="laborAddLineBtn">+ Add Labor Line</button>
           </div>
           <div id="laborTable" class="estimate-table">
             <!-- Labor rows will be added here -->
@@ -85,8 +85,8 @@
         <!-- Materials Section -->
         <div class="tile">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <h2 style="margin: 0;">Materials</h2>
-            <button type="button" id="addMaterialBtn" class="btn btn-secondary">+ Add Material Line</button>
+            <h2 style="margin: 0;" data-i18n="materialsHeading">Materials</h2>
+            <button type="button" id="addMaterialBtn" class="btn btn-secondary" data-i18n="materialsAddLineBtn">+ Add Material Line</button>
           </div>
           <div id="materialsTable" class="estimate-table">
             <!-- Material rows will be added here -->
@@ -95,17 +95,17 @@
 
         <!-- Totals -->
         <div class="tile">
-          <h2>Totals</h2>
+          <h2 data-i18n="totalsHeading">Totals</h2>
           <div class="info-row">
-            <span class="info-label">Labor Subtotal</span>
+            <span class="info-label" data-i18n="laborSubtotalLabel">Labor Subtotal</span>
             <span class="info-value" id="laborSubtotal">$0.00</span>
           </div>
           <div class="info-row">
-            <span class="info-label">Materials Subtotal</span>
+            <span class="info-label" data-i18n="materialsSubtotalLabel">Materials Subtotal</span>
             <span class="info-value" id="materialsSubtotal">$0.00</span>
           </div>
           <div class="info-row" style="border-top: 2px solid var(--border); padding-top: 12px; margin-top: 8px;">
-            <span class="info-label" style="font-weight: 700; font-size: 1.1rem;">Grand Total</span>
+            <span class="info-label" style="font-weight: 700; font-size: 1.1rem;" data-i18n="grandTotalLabel">Grand Total</span>
             <span class="info-value" id="grandTotal" style="font-weight: 700; font-size: 1.1rem;">$0.00</span>
           </div>
         </div>
@@ -113,9 +113,9 @@
         <!-- Actions -->
         <div class="tile">
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <button type="button" id="downloadPdfBtn" class="btn btn-primary">Download PDF</button>
-            <button type="button" id="printPdfBtn" class="btn btn-secondary">Print / Save as PDF</button>
-            <button type="button" id="logoutBtn" class="btn btn-secondary">Log Out</button>
+            <button type="button" id="downloadPdfBtn" class="btn btn-primary" data-i18n="downloadPdfBtn">Download PDF</button>
+            <button type="button" id="printPdfBtn" class="btn btn-secondary" data-i18n="printSavePdfBtn">Print / Save as PDF</button>
+            <button type="button" id="logoutBtn" class="btn btn-secondary" data-i18n="logoutBtn">Log Out</button>
           </div>
           <p id="pdfError" class="small" role="alert" style="color: var(--accent); margin-top: 12px; display: none;"></p>
         </div>
