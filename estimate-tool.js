@@ -275,8 +275,20 @@
           reader.readAsDataURL(logoBlob);
         });
 
-        doc.addImage(logoDataUrl, 'PNG', margin, yPos, 1.5, 0.5);
-        yPos += 0.7;
+        // Get image dimensions to maintain aspect ratio
+        const img = new Image();
+        await new Promise((resolve, reject) => {
+          img.onload = resolve;
+          img.onerror = reject;
+          img.src = logoDataUrl;
+        });
+
+        const logoWidth = 1.5; // inches
+        const aspectRatio = img.height / img.width;
+        const logoHeight = logoWidth * aspectRatio; // Maintain natural aspect ratio
+
+        doc.addImage(logoDataUrl, 'PNG', margin, yPos, logoWidth, logoHeight);
+        yPos += logoHeight + 0.2; // Add spacing after logo
       } catch (e) {
         console.warn('Could not load logo:', e);
       }
