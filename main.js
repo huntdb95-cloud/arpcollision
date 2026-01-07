@@ -130,6 +130,31 @@
     });
   }
 
+  function isIOS() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    const isIOSDevice = /iPad|iPhone|iPod/.test(ua) || 
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    return isIOSDevice;
+  }
+
+  function wireDirectionsLinks() {
+    const links = document.querySelectorAll('[data-directions-apple][data-directions-google]');
+    if (!links.length) return;
+
+    const useApple = isIOS();
+
+    links.forEach((link) => {
+      const googleURL = link.getAttribute('data-directions-google');
+      const appleURL = link.getAttribute('data-directions-apple');
+      
+      if (useApple && appleURL) {
+        link.href = appleURL;
+      } else if (googleURL) {
+        link.href = googleURL;
+      }
+    });
+  }
+
   // init
   const initial = getLanguage();
   applyTranslations(initial);
@@ -137,4 +162,5 @@
   wireLanguageToggle();
   wireContactForm();
   wireCompareEstimateForm();
+  wireDirectionsLinks();
 })();
