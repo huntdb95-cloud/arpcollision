@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="comparePageTitle">Compare Estimate | ARP Collision Repair</title>
+  <meta name="description" content="Upload your estimate for review by ARP Collision Repair." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skipToContent">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-stack">
+      <a class="brand brand-centered" href="index.html" aria-label="ARP Collision Repair Home">
+        <img class="brand-logo" src="assets/logonew.png" alt="ARP Collision Repair logo" />
+      </a>
+
+      <nav class="nav nav-centered" aria-label="Main navigation">
+        <a class="nav-link" href="index.html" data-i18n="navHome">Home</a>
+        <a class="nav-link" href="services.html" data-i18n="navServices">Services</a>
+        <a class="nav-link" href="contact.html" data-i18n="navContact">Contact</a>
+      </nav>
+
+      <div class="header-actions header-actions-centered">
+        <button id="langToggle" class="btn btn-secondary" type="button" aria-label="Toggle language">
+          <span id="langToggleLabel"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <h1 data-i18n="compareTitle">Compare Your Estimate</h1>
+        <p class="lead" data-i18n="compareSubtitle">
+          Upload the estimate you received and we'll review it for you.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="tile" style="max-width: 600px; margin: 0 auto;">
+          <h2 data-i18n="compareFormTitle">Upload Your Estimate</h2>
+
+          <!-- Replace XXXXXXXX with your actual Formspree form ID -->
+          <form id="compareEstimateForm" class="form" method="POST" enctype="multipart/form-data" action="https://formspree.io/f/XXXXXXXX" novalidate>
+            <label class="field">
+              <span data-i18n="compareFormNameLabel">Name</span>
+              <input name="name" type="text" autocomplete="name" required />
+            </label>
+
+            <label class="field">
+              <span data-i18n="compareFormPhoneLabel">Phone</span>
+              <input name="phone" type="tel" autocomplete="tel" />
+            </label>
+
+            <label class="field">
+              <span data-i18n="compareFormEmailLabel">Email</span>
+              <input name="email" type="email" autocomplete="email" required />
+            </label>
+
+            <label class="field">
+              <span data-i18n="compareFormUploadLabel">Estimate File</span>
+              <input name="file" type="file" accept=".pdf,.jpg,.jpeg,.png" required />
+              <small class="small" style="margin-top: 4px;" data-i18n="compareFormUploadHint">PDF, JPG, or PNG files accepted.</small>
+            </label>
+
+            <label class="field">
+              <span data-i18n="compareFormNotesLabel">Notes (Optional)</span>
+              <textarea name="notes" rows="4"></textarea>
+            </label>
+
+            <button class="btn btn-primary btn-block" type="submit" data-i18n="compareFormSubmit">
+              Submit Estimate
+            </button>
+
+            <p id="compareFormStatus" class="small" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img class="footer-logo" src="assets/logonew.png" alt="" />
+      </div>
+      <p class="footer-text" data-i18n="footerTagline">
+        Built to help drivers get back on the road with confidence.
+      </p>
+      <p class="footer-copy" data-i18n="footerCopyright">© 2026 ARP Collision Repair</p>
+    </div>
+  </footer>
+
+  <!-- Mobile bottom navigation -->
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <a class="bottom-nav-link" href="index.html" data-i18n="navHome">Home</a>
+    <a class="bottom-nav-link" href="services.html" data-i18n="navServices">Services</a>
+    <a class="bottom-nav-link" href="contact.html" data-i18n="navContact">Contact</a>
+  </nav>
+
+  <script src="i18n.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
+
