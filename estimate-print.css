@@ -35,8 +35,9 @@
   }
 
   .print-logo {
-    height: 60px;
-    width: auto;
+    width: 180px;
+    height: auto;
+    object-fit: contain;
   }
 
   .print-company h1 {
