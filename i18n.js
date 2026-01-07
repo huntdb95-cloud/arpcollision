@@ -84,6 +84,8 @@ window.I18N_STRINGS = {
     contactAddressValue: "102 Iris Ave, Old Hickory, TN 37138",
     contactTip: "Tip: For faster estimates, include photos of the damage and your vehicle year/make/model.",
 
+    contactMapTitle: "Our Location",
+    contactDirectionsBtn: "Get Directions",
     contactFormTitle: "Send a Message",
     formNameLabel: "Name",
     formPhoneLabel: "Phone",
@@ -193,6 +195,8 @@ window.I18N_STRINGS = {
     contactAddressValue: "102 Iris Ave, Old Hickory, TN 37138",
     contactTip: "Tip: Para cotizar más rápido, incluye fotos del daño y el año/marca/modelo de tu vehículo.",
 
+    contactMapTitle: "Nuestra ubicación",
+    contactDirectionsBtn: "Cómo llegar",
     contactFormTitle: "Enviar Mensaje",
     formNameLabel: "Nombre",
     formPhoneLabel: "Teléfono",
