@@ -1091,6 +1091,14 @@ input:focus, textarea:focus{
   }
 }
 /* Estimate tool styles */
+.estimate-tool-container > .tile{
+  margin-bottom: 16px;
+}
+
+.estimate-tool-container > .tile:last-child{
+  margin-bottom: 0;
+}
+
 .estimate-table{
   display: grid;
   gap: 12px;
