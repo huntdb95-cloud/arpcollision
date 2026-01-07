@@ -337,6 +337,27 @@ a:hover{ text-decoration: underline; }
   color: inherit;
 }
 
+/* Desktop: Make all contact page boxes the same width */
+@media (min-width: 769px){
+  /* Change contact page grid to single column on desktop for consistent box widths */
+  .section .container.grid.grid-2{
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Remove full-width span from map on desktop so it matches other boxes */
+  .map-card--dark{
+    grid-column: auto;
+  }
+
+  /* Ensure all contact tiles have consistent width */
+  .section .container.grid.grid-2 .tile{
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
 .form{
   display:grid;
   gap: 12px;
@@ -613,6 +634,30 @@ a:hover{ text-decoration: underline; }
   padding: 4px 0; /* Reduced from 14px to keep header compact with larger logo */
 }
 
+/* Desktop: Align nav and translate button on same row */
+@media (min-width: 769px){
+  .header-stack{
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .nav-centered{
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .header-actions-centered{
+    display: flex;
+    align-items: center;
+  }
+
+  .header-actions-centered .btn{
+    white-space: nowrap;
+  }
+}
+
 .brand-centered{
   display:flex;
   justify-content: center;
@@ -835,6 +880,27 @@ a:hover{ text-decoration: underline; }
 .map-card--dark p,
 .map-card--dark a{
   color: inherit;
+}
+
+/* Desktop: Make all contact page boxes the same width */
+@media (min-width: 769px){
+  /* Change contact page grid to single column on desktop for consistent box widths */
+  .section .container.grid.grid-2{
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Remove full-width span from map on desktop so it matches other boxes */
+  .map-card--dark{
+    grid-column: auto;
+  }
+
+  /* Ensure all contact tiles have consistent width */
+  .section .container.grid.grid-2 .tile{
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 .form{
