@@ -425,7 +425,7 @@ input[type="file"]::-webkit-file-upload-button:hover{
 @media (max-width: 768px){
   .footer-mobile-spacer{
     display: block;
-    height: 96px; /* pushes footer content above fixed bottom nav */
+    height: 48px; /* each spacer row */
     width: 100%;
   }
 }
@@ -908,7 +908,7 @@ input:focus, textarea:focus{
 @media (max-width: 768px){
   .footer-mobile-spacer{
     display: block;
-    height: 96px; /* pushes footer content above fixed bottom nav */
+    height: 48px; /* each spacer row */
     width: 100%;
   }
 }
