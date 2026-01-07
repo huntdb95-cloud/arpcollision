@@ -8,6 +8,28 @@
     return;
   }
 
+  // Get current language
+  function getLanguage() {
+    const saved = localStorage.getItem('arp_lang');
+    if (saved === 'en' || saved === 'es') return saved;
+    return 'en';
+  }
+
+  // Get translation
+  function getTranslation(key) {
+    const lang = getLanguage();
+    const dict = window.I18N_STRINGS?.[lang] || window.I18N_STRINGS?.en;
+    return dict?.[key] || key;
+  }
+
+  // Apply translations to placeholders
+  function applyPlaceholderTranslations() {
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      el.placeholder = getTranslation(key);
+    });
+  }
+
   // Set default date to today
   const dateInput = document.getElementById('estimateDate');
   if (dateInput) {
@@ -68,12 +90,12 @@
     return `
       <div class="estimate-row" data-id="${id}">
         <div class="estimate-row-content">
-          <input type="text" class="estimate-input estimate-desc" placeholder="Description" data-field="description" />
-          <input type="number" class="estimate-input estimate-number" placeholder="Hours" step="0.1" min="0" data-field="hours" />
-          <input type="number" class="estimate-input estimate-number" placeholder="Rate" step="0.01" min="0" data-field="rate" />
+          <input type="text" class="estimate-input estimate-desc" data-i18n-placeholder="descriptionPlaceholder" placeholder="${getTranslation('descriptionPlaceholder')}" data-field="description" />
+          <input type="number" class="estimate-input estimate-number" data-i18n-placeholder="hoursPlaceholder" placeholder="${getTranslation('hoursPlaceholder')}" step="0.1" min="0" data-field="hours" />
+          <input type="number" class="estimate-input estimate-number" data-i18n-placeholder="ratePlaceholder" placeholder="${getTranslation('ratePlaceholder')}" step="0.01" min="0" data-field="rate" />
           <span class="estimate-total" data-total="${id}">$0.00</span>
         </div>
-        <button type="button" class="btn btn-secondary estimate-remove" data-remove="${id}">Remove</button>
+        <button type="button" class="btn btn-secondary estimate-remove" data-remove="${id}" data-i18n="removeBtn">${getTranslation('removeBtn')}</button>
       </div>
     `;
   }
@@ -83,12 +105,12 @@
     return `
       <div class="estimate-row" data-id="${id}">
         <div class="estimate-row-content">
-          <input type="text" class="estimate-input estimate-desc" placeholder="Description" data-field="description" />
-          <input type="number" class="estimate-input estimate-number" placeholder="Qty" step="0.01" min="0" data-field="qty" />
-          <input type="number" class="estimate-input estimate-number" placeholder="Unit Cost" step="0.01" min="0" data-field="cost" />
+          <input type="text" class="estimate-input estimate-desc" data-i18n-placeholder="descriptionPlaceholder" placeholder="${getTranslation('descriptionPlaceholder')}" data-field="description" />
+          <input type="number" class="estimate-input estimate-number" data-i18n-placeholder="qtyPlaceholder" placeholder="${getTranslation('qtyPlaceholder')}" step="0.01" min="0" data-field="qty" />
+          <input type="number" class="estimate-input estimate-number" data-i18n-placeholder="unitCostPlaceholder" placeholder="${getTranslation('unitCostPlaceholder')}" step="0.01" min="0" data-field="cost" />
           <span class="estimate-total" data-total="${id}">$0.00</span>
         </div>
-        <button type="button" class="btn btn-secondary estimate-remove" data-remove="${id}">Remove</button>
+        <button type="button" class="btn btn-secondary estimate-remove" data-remove="${id}" data-i18n="removeBtn">${getTranslation('removeBtn')}</button>
       </div>
     `;
   }
@@ -107,6 +129,15 @@
     if (table) {
       table.insertAdjacentHTML('beforeend', createLaborRowHTML(id));
       attachRowListeners(id, 'labor');
+      // Re-apply translations to new row
+      const row = document.querySelector(`[data-id="${id}"]`);
+      if (row) {
+        const removeBtn = row.querySelector(`[data-remove="${id}"]`);
+        if (removeBtn && removeBtn.hasAttribute('data-i18n')) {
+          removeBtn.textContent = getTranslation('removeBtn');
+        }
+        applyPlaceholderTranslations();
+      }
     }
   }
 
@@ -124,6 +155,15 @@
     if (table) {
       table.insertAdjacentHTML('beforeend', createMaterialRowHTML(id));
       attachRowListeners(id, 'material');
+      // Re-apply translations to new row
+      const row = document.querySelector(`[data-id="${id}"]`);
+      if (row) {
+        const removeBtn = row.querySelector(`[data-remove="${id}"]`);
+        if (removeBtn && removeBtn.hasAttribute('data-i18n')) {
+          removeBtn.textContent = getTranslation('removeBtn');
+        }
+        applyPlaceholderTranslations();
+      }
     }
   }
 
@@ -378,10 +418,21 @@
       console.error('PDF generation error:', error);
       const errorEl = document.getElementById('pdfError');
       if (errorEl) {
-        errorEl.textContent = 'PDF download unavailable. Use Print / Save as PDF.';
+        errorEl.textContent = getTranslation('pdfFallbackMsg');
         errorEl.style.display = 'block';
       }
     }
+  }
+
+  // Re-translate all dynamic content (rows, buttons, etc.)
+  function retranslateDynamicContent() {
+    // Re-translate all remove buttons
+    document.querySelectorAll('.estimate-remove[data-i18n]').forEach(btn => {
+      btn.textContent = getTranslation('removeBtn');
+    });
+
+    // Re-translate all placeholders
+    applyPlaceholderTranslations();
   }
 
   // Print / Save as PDF fallback
@@ -487,5 +538,19 @@
   // Initialize with one empty row each
   addLaborRow();
   addMaterialRow();
+
+  // Apply placeholder translations on load
+  applyPlaceholderTranslations();
+
+  // Listen for language changes and re-translate dynamic content
+  const langObserver = new MutationObserver(() => {
+    retranslateDynamicContent();
+  });
+  langObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+
+  // Also listen for translation updates from main.js
+  document.addEventListener('i18n:updated', () => {
+    retranslateDynamicContent();
+  });
 })();
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Estimate Tool Login | ARP Collision Repair</title>
+  <title data-i18n="estimateLoginPageTitle">Estimate Tool Login | ARP Collision Repair</title>
   <meta name="description" content="Login to access the ARP Collision Repair estimate tool." />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -33,26 +33,26 @@
   <main id="main">
     <section class="page-hero">
       <div class="container">
-        <h1>Estimate Tool Login</h1>
-        <p class="lead">Enter password to access the repair estimate tool.</p>
+        <h1 data-i18n="estimateLoginHeading">Estimate Tool Login</h1>
+        <p class="lead" data-i18n="estimateLoginSubtitle">Enter password to access the repair estimate tool.</p>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
         <div class="tile" style="max-width: 400px; margin: 0 auto;">
-          <h2>Login</h2>
+          <h2 data-i18n="estimateLoginFormTitle">Login</h2>
 
           <form id="loginForm" class="form" novalidate>
             <label class="field">
-              <span>Password</span>
+              <span data-i18n="estimateLoginPasswordLabel">Password</span>
               <div style="position: relative;">
                 <input id="passwordInput" name="password" type="password" autocomplete="current-password" required style="padding-right: 45px;" />
-                <button type="button" id="togglePassword" class="btn btn-secondary" style="position: absolute; right: 4px; top: 50%; transform: translateY(-50%); padding: 8px 10px; font-size: 0.8rem;" aria-label="Toggle password visibility">Show</button>
+                <button type="button" id="togglePassword" class="btn btn-secondary" style="position: absolute; right: 4px; top: 50%; transform: translateY(-50%); padding: 8px 10px; font-size: 0.8rem;" aria-label="Toggle password visibility" data-i18n="estimateLoginShowPassword">Show</button>
               </div>
             </label>
 
-            <button class="btn btn-primary btn-block" type="submit">
+            <button class="btn btn-primary btn-block" type="submit" data-i18n="estimateLoginEnterBtn">
               Enter
             </button>
 
@@ -93,6 +93,20 @@
       window.location.href = 'estimate-tool.html';
     }
 
+    // Get current language
+    function getLanguage() {
+      const saved = localStorage.getItem('arp_lang');
+      if (saved === 'en' || saved === 'es') return saved;
+      return 'en';
+    }
+
+    // Get translation
+    function getTranslation(key) {
+      const lang = getLanguage();
+      const dict = window.I18N_STRINGS?.[lang] || window.I18N_STRINGS?.en;
+      return dict?.[key] || key;
+    }
+
     // Password toggle
     const togglePassword = document.getElementById('togglePassword');
     const passwordInput = document.getElementById('passwordInput');
@@ -100,7 +114,8 @@
       togglePassword.addEventListener('click', () => {
         const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
         passwordInput.setAttribute('type', type);
-        togglePassword.textContent = type === 'password' ? 'Show' : 'Hide';
+        const key = type === 'password' ? 'estimateLoginShowPassword' : 'estimateLoginHidePassword';
+        togglePassword.textContent = getTranslation(key);
       });
     }
 
@@ -120,12 +135,22 @@
           window.location.href = 'estimate-tool.html';
         } else {
           if (loginError) {
-            loginError.textContent = 'Incorrect password.';
+            loginError.textContent = getTranslation('estimateLoginError');
             loginError.style.display = 'block';
           }
           passwordInput.focus();
         }
       });
+    }
+
+    // Update password toggle text on language change
+    if (togglePassword && passwordInput) {
+      const observer = new MutationObserver(() => {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        const key = type === 'password' ? 'estimateLoginShowPassword' : 'estimateLoginHidePassword';
+        togglePassword.textContent = getTranslation(key);
+      });
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
     }
   </script>
 </body>

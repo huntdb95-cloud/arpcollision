@@ -1085,6 +1085,19 @@ input:focus, textarea:focus{
 }
 
 @media (max-width: 768px){
+  /* Ensure estimate info fields stack and fit properly on mobile */
+  .estimate-info-grid{
+    grid-template-columns: 1fr !important;
+  }
+
+  .estimate-info-grid input,
+  .estimate-info-grid select,
+  .estimate-info-grid textarea{
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
   .estimate-row-content{
     grid-template-columns: 1fr;
     gap: 8px;

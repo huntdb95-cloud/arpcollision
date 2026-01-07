@@ -20,6 +20,13 @@
       if (typeof value === "string") el.textContent = value;
     });
 
+    // Placeholder support
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+      const key = el.getAttribute("data-i18n-placeholder");
+      const value = dict[key];
+      if (typeof value === "string") el.placeholder = value;
+    });
+
     // title support
     const titleEl = document.querySelector("title[data-i18n]");
     if (titleEl) {
@@ -29,6 +36,9 @@
     }
 
     document.documentElement.lang = lang;
+
+    // Dispatch event for dynamic content updates
+    document.dispatchEvent(new CustomEvent('i18n:updated', { detail: { lang } }));
   }
 
   function updateLangToggleLabel(lang) {
