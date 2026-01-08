@@ -9,6 +9,8 @@ window.I18N_STRINGS = {
     navHome: "Home",
     navServices: "Services",
     navContact: "Contact",
+    navTools: "Tools",
+    "nav.expenses": "Business Expenses",
     toggleToSpanish: "Español",
     toggleToEnglish: "English",
 
@@ -159,7 +161,19 @@ window.I18N_STRINGS = {
     hoursPlaceholder: "Hours",
     ratePlaceholder: "Rate",
     qtyPlaceholder: "Qty",
-    unitCostPlaceholder: "Unit Cost"
+    unitCostPlaceholder: "Unit Cost",
+    
+    // Expenses (minimal keys for safety)
+    "expenses.pageTitle": "Business Expenses",
+    "expenses.pageSubtitle": "Track expenses, attach receipts, and export reports.",
+    "expenses.save": "Save Expense",
+    "expenses.downloadCsv": "Download CSV",
+    "expenses.downloadZip": "Download ZIP (CSV + receipts)",
+    
+    // Tools
+    "tools.pageTitle": "Tools",
+    "tools.pageSubtitle": "Business tools and utilities.",
+    "tools.openTool": "Open Tool →"
   },
 
   es: {
@@ -168,6 +182,8 @@ window.I18N_STRINGS = {
     navHome: "Inicio",
     navServices: "Servicios",
     navContact: "Contacto",
+    navTools: "Herramientas",
+    "nav.expenses": "Gastos del Negocio",
     toggleToSpanish: "Español",
     toggleToEnglish: "English",
 
@@ -318,6 +334,18 @@ window.I18N_STRINGS = {
     hoursPlaceholder: "Horas",
     ratePlaceholder: "Tarifa",
     qtyPlaceholder: "Cantidad",
-    unitCostPlaceholder: "Costo Unitario"
+    unitCostPlaceholder: "Costo Unitario",
+    
+    // Expenses (minimal keys for safety)
+    "expenses.pageTitle": "Gastos del Negocio",
+    "expenses.pageSubtitle": "Registra gastos, adjunta recibos y exporta reportes.",
+    "expenses.save": "Guardar Gasto",
+    "expenses.downloadCsv": "Descargar CSV",
+    "expenses.downloadZip": "Descargar ZIP (CSV + recibos)",
+    
+    // Tools
+    "tools.pageTitle": "Herramientas",
+    "tools.pageSubtitle": "Herramientas y utilidades del negocio.",
+    "tools.openTool": "Abrir Herramienta →"
   }
 };

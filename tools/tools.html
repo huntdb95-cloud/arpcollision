@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="tools.pageTitle">Tools | ARP Collision Repair</title>
+  <meta name="description" content="Business tools and utilities." />
+  <link rel="stylesheet" href="../styles.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+</head>
+<body data-page="tools" data-requires-auth="true">
+  <a class="skip-link" href="#main" data-i18n="skipToContent">Skip to content</a>
+
+  <div class="app-layout">
+    <div id="sidebar"></div>
+    <main id="main">
+      <header class="site-header">
+        <div class="container header-stack">
+          <a class="brand brand-centered" href="../index.html" aria-label="ARP Collision Repair Home">
+            <img class="brand-logo" src="../assets/logonew.png" alt="ARP Collision Repair logo" />
+          </a>
+        </div>
+      </header>
+
+      <section class="page-hero">
+        <div class="container">
+          <h1 data-i18n="tools.pageTitle">Tools</h1>
+          <p class="lead" data-i18n="tools.pageSubtitle">Business tools and utilities.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="grid grid-2">
+            <!-- Business Expenses Card -->
+            <div class="card pad">
+              <h2 class="h2" data-i18n="nav.expenses">Business Expenses</h2>
+              <p class="muted" data-i18n="expenses.cardDesc">Track expenses, attach receipts, and export reports by date range.</p>
+              <div class="divider"></div>
+              <div style="margin-top: 16px;">
+                <a href="../expenses/expenses.html" class="btn primary" data-i18n="tools.openTool">Open Tool →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <div class="footer-brand">
+            <a href="../index.html" aria-label="ARP Collision Repair Home">
+              <img class="footer-logo" src="../assets/logonew.png" alt="" />
+            </a>
+          </div>
+          <p class="footer-text" data-i18n="footerTagline">
+            Built to help drivers get back on the road with confidence.
+          </p>
+          <p class="footer-copy" data-i18n="footerCopyright">© 2026 ARP Collision Repair</p>
+          <div class="footer-mobile-spacer" aria-hidden="true"></div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Mobile bottom navigation -->
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <a class="bottom-nav-link" href="../index.html" data-i18n="navHome">Home</a>
+    <a class="bottom-nav-link active" href="../tools/tools.html" data-i18n="navTools">Tools</a>
+    <a class="bottom-nav-link" href="../contact.html" data-i18n="navContact">Contact</a>
+  </nav>
+
+  <script src="../sidebar.js"></script>
+  <script src="../scripts.js" type="module"></script>
+  <script type="module" src="../logout.js"></script>
+</body>
+</html>
+
