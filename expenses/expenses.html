@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="expenses.pageTitle">Business Expenses | ARP Collision Repair</title>
+  <meta name="description" content="Track business expenses, attach receipts, and export reports." />
+  <link rel="stylesheet" href="../styles.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+</head>
+<body data-page="expenses" data-requires-auth="true">
+  <a class="skip-link" href="#main" data-i18n="skipToContent">Skip to content</a>
+
+  <div class="app-layout">
+    <div id="sidebar"></div>
+    <main id="main">
+      <header class="site-header">
+        <div class="container header-stack">
+          <a class="brand brand-centered" href="../index.html" aria-label="ARP Collision Repair Home">
+            <img class="brand-logo" src="../assets/logonew.png" alt="ARP Collision Repair logo" />
+          </a>
+        </div>
+      </header>
+
+      <section class="page-hero">
+        <div class="container">
+          <h1 data-i18n="expenses.pageTitle">Business Expenses</h1>
+          <p class="lead" data-i18n="expenses.pageSubtitle">Track expenses, attach receipts, and export reports.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <!-- Add Expense Form -->
+          <div class="card pad" style="margin-bottom: 24px;">
+            <h2 class="h2" data-i18n="expenses.addTitle">Add Expense</h2>
+            <form id="expenseForm">
+              <div class="grid grid-2" style="gap: 12px; margin-bottom: 12px;">
+                <label class="field">
+                  <span data-i18n="expenses.date">Date</span>
+                  <input type="date" id="expenseDate" required />
+                </label>
+                <label class="field">
+                  <span data-i18n="expenses.vendor">Vendor</span>
+                  <input type="text" id="vendor" required />
+                </label>
+                <label class="field">
+                  <span data-i18n="expenses.amount">Amount</span>
+                  <input type="number" id="amount" step="0.01" min="0" required />
+                </label>
+                <label class="field">
+                  <span data-i18n="expenses.category">Category</span>
+                  <select id="category" required>
+                    <option value="">-- Select --</option>
+                    <option value="Office Supplies">Office Supplies</option>
+                    <option value="Tools & Equipment">Tools & Equipment</option>
+                    <option value="Vehicle Maintenance">Vehicle Maintenance</option>
+                    <option value="Fuel">Fuel</option>
+                    <option value="Utilities">Utilities</option>
+                    <option value="Rent">Rent</option>
+                    <option value="Insurance">Insurance</option>
+                    <option value="Professional Services">Professional Services</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Meals & Entertainment">Meals & Entertainment</option>
+                    <option value="Travel">Travel</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </label>
+                <label class="field">
+                  <span data-i18n="expenses.paymentMethod">Payment Method</span>
+                  <select id="paymentMethod">
+                    <option value="">-- Select --</option>
+                    <option value="Cash">Cash</option>
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Debit Card">Debit Card</option>
+                    <option value="Check">Check</option>
+                    <option value="Bank Transfer">Bank Transfer</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </label>
+                <label class="field">
+                  <span data-i18n="expenses.receipt">Receipt</span>
+                  <input type="file" id="receiptFile" accept=".pdf,.jpg,.jpeg,.png,image/jpeg,image/png,application/pdf" />
+                  <p class="small" data-i18n="expenses.uploadReceipt">Upload Receipt (PDF, JPG, or PNG, max 10MB)</p>
+                </label>
+              </div>
+              <label class="field" style="margin-bottom: 12px;">
+                <span data-i18n="expenses.memo">Memo / Notes</span>
+                <textarea id="memo" rows="3"></textarea>
+              </label>
+              <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <button type="submit" class="btn primary" data-i18n="expenses.save">Save Expense</button>
+                <button type="button" id="clearForm" class="btn btn-secondary" data-i18n="expenses.clear">Clear</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Filters & Export -->
+          <div class="card pad" style="margin-bottom: 24px;">
+            <h2 class="h2" data-i18n="expenses.filtersTitle">Filters & Export</h2>
+            <div class="grid grid-2" style="gap: 12px; margin-bottom: 12px;">
+              <label class="field">
+                <span data-i18n="expenses.fromDate">From</span>
+                <input type="date" id="filterFromDate" />
+              </label>
+              <label class="field">
+                <span data-i18n="expenses.toDate">To</span>
+                <input type="date" id="filterToDate" />
+              </label>
+              <label class="field">
+                <span data-i18n="expenses.category">Category</span>
+                <select id="filterCategory">
+                  <option value="all" data-i18n="expenses.allCategories">All categories</option>
+                  <option value="Office Supplies">Office Supplies</option>
+                  <option value="Tools & Equipment">Tools & Equipment</option>
+                  <option value="Vehicle Maintenance">Vehicle Maintenance</option>
+                  <option value="Fuel">Fuel</option>
+                  <option value="Utilities">Utilities</option>
+                  <option value="Rent">Rent</option>
+                  <option value="Insurance">Insurance</option>
+                  <option value="Professional Services">Professional Services</option>
+                  <option value="Marketing">Marketing</option>
+                  <option value="Meals & Entertainment">Meals & Entertainment</option>
+                  <option value="Travel">Travel</option>
+                  <option value="Other">Other</option>
+                </select>
+              </label>
+              <label class="field">
+                <span data-i18n="expenses.sortBy">Sort by</span>
+                <select id="sortBy">
+                  <option value="newest" data-i18n="expenses.sortNewest">Newest</option>
+                  <option value="oldest" data-i18n="expenses.sortOldest">Oldest</option>
+                  <option value="amountHigh" data-i18n="expenses.sortAmtHigh">Amount (high → low)</option>
+                  <option value="amountLow" data-i18n="expenses.sortAmtLow">Amount (low → high)</option>
+                </select>
+              </label>
+            </div>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+              <button type="button" id="exportCsv" class="btn btn-secondary" data-i18n="expenses.downloadCsv">Download CSV</button>
+              <button type="button" id="exportZip" class="btn btn-secondary" data-i18n="expenses.downloadZip">Download ZIP (CSV + receipts)</button>
+            </div>
+          </div>
+
+          <!-- Expenses List -->
+          <div class="card pad">
+            <h2 class="h2" data-i18n="expenses.listTitle">Expenses</h2>
+            <div id="expensesList">
+              <p class="muted" data-i18n="expenses.noResults">No expenses found for the selected filters.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <div class="footer-brand">
+            <a href="../index.html" aria-label="ARP Collision Repair Home">
+              <img class="footer-logo" src="../assets/logonew.png" alt="" />
+            </a>
+          </div>
+          <p class="footer-text" data-i18n="footerTagline">
+            Built to help drivers get back on the road with confidence.
+          </p>
+          <p class="footer-copy" data-i18n="footerCopyright">© 2026 ARP Collision Repair</p>
+          <div class="footer-mobile-spacer" aria-hidden="true"></div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Mobile bottom navigation -->
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <a class="bottom-nav-link" href="../index.html" data-i18n="navHome">Home</a>
+    <a class="bottom-nav-link" href="../tools/tools.html" data-i18n="navTools">Tools</a>
+    <a class="bottom-nav-link" href="../contact.html" data-i18n="navContact">Contact</a>
+  </nav>
+
+  <script src="../sidebar.js"></script>
+  <script src="../scripts.js" type="module"></script>
+  <script type="module" src="../logout.js"></script>
+  <script type="module" src="./expenses.js"></script>
+</body>
+</html>
+

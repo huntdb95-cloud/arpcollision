@@ -1198,3 +1198,179 @@ input:focus, textarea:focus{
   }
 }
 
+/* App Layout with Sidebar */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+#sidebar {
+  display: none; /* Hidden on mobile */
+}
+
+#main {
+  flex: 1;
+  width: 100%;
+}
+
+@media (min-width: 769px) {
+  .app-layout {
+    display: flex;
+  }
+  
+  #sidebar {
+    display: block;
+    width: 260px;
+    min-width: 260px;
+    flex-shrink: 0;
+  }
+  
+  #main {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 260px;
+  background: var(--card);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  z-index: 40;
+}
+
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar-brand {
+  display: block;
+}
+
+.sidebar-logo {
+  height: 40px;
+  width: auto;
+}
+
+.sidebar-nav {
+  padding: 12px 0;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu-item {
+  margin: 0;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+}
+
+.sidebar-link.active {
+  background: rgba(226, 27, 35, 0.1);
+  color: var(--text);
+  border-left-color: var(--accent);
+}
+
+.sidebar-icon {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  width: 24px;
+}
+
+.sidebar-label {
+  flex: 1;
+}
+
+.sidebar-arrow {
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.sidebar-menu-item.active > .sidebar-link > .sidebar-arrow {
+  transform: rotate(180deg);
+}
+
+.sidebar-submenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.2);
+  display: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.sidebar-menu-item.active > .sidebar-submenu {
+  display: block;
+  max-height: 500px;
+}
+
+.sidebar-submenu-item {
+  margin: 0;
+}
+
+.sidebar-submenu-link {
+  padding-left: 56px;
+  font-size: 0.9rem;
+}
+
+/* Card and Pad utilities */
+.card {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.pad {
+  padding: 20px;
+}
+
+.h2 {
+  margin: 0 0 16px;
+  font-size: 1.25rem;
+  font-weight: 650;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 16px 0;
+}
+
+.primary {
+  background: linear-gradient(180deg, rgba(226,27,35,.95), rgba(226,27,35,.75));
+  border-color: rgba(226,27,35,.55);
+  box-shadow: 0 10px 24px rgba(226,27,35,.18);
+  color: var(--text);
+}
+
+.primary:hover {
+  filter: brightness(1.1);
+}
+
